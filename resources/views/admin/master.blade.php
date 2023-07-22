@@ -5,6 +5,7 @@
     <!-- end sidenav -->
 
 @include('admin.common.navbar')
+
    @yield('main')
 </body>
 @include('admin.common.footer')
