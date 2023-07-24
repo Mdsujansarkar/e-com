@@ -40,7 +40,7 @@
         </div>
         <div class="flex-auto p-6 px-0 pb-2">
             <div class="overflow-x-auto">
-                <form action="" method="post">
+                <form action="{{ route('addCategory') }}" method="post">
                     @csrf
                     <div>
                         <label for="small-input"
