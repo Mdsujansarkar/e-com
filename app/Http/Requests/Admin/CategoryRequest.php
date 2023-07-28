@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api\v1\Admin;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,8 +22,15 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category' => 'required',
+            'category' => 'required|unique:categories,category',
             'publication_status' => 'required'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'category.required' => 'Category Unique',
+            'publication_status.required' =>'Publication Require'
         ];
     }
 }

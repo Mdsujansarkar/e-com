@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-enum BoolStatusEnum:int
+enum BoolStatusEnum:string
 {
-    case ACTIVE = 1;
-    case INACTIVE = 0;
+    case ACTIVE = '1';
+    case INACTIVE = '0';
 }
