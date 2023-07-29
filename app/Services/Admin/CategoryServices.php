@@ -22,14 +22,17 @@ class CategoryServices
     {
        return $categoryView = Category::findOrFail($categoryId);
     }
-    public function updateCategory($categoryId, $data)
+    public function updateCategory(int $categoryId, array $data)
     {
         $updatedId = Category::findOrFail($categoryId);
-        return $updatedId->updated($data);
+        return $updatedId->update($data);
     }
     public function deleteCategory($categoryId)
     {
         $deleteId = Category::findOrFail($categoryId);
+        if (!$deleteId) {
+            throw new \Exception("Record not found.");
+          }
         return $deleteId->delete();
 
     }

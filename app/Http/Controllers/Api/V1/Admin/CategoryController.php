@@ -47,12 +47,14 @@ class CategoryController extends Controller
   {
 
     $validate = $request->validated();
+
     try {
       $data = $service->updateCategory($id, $validate);
       // return  _successMsgResps('Category Create Successfully', 200);
+
       $success = [
         'success' => true,
-        'message' => 'Create successfully',
+        'message' => 'Updat successfully',
       ];
       return response()->json($success, 200);
     } catch (\Throwable $th) {
@@ -62,9 +64,6 @@ class CategoryController extends Controller
   public function destroy(CategoryServices $service, int $id)
   {
     $data = $service->deleteCategory($id);
-    if (!$data) {
-      throw new \Exception("Record not found.");
-    }
     return response()->json($data, 200);
   }
 }
