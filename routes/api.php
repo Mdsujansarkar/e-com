@@ -11,5 +11,6 @@ Route::group(['prefix'=>'v1'], function(){
     Route::get('/category', [CategoryController::class, 'index']);
     Route::post('/category', [CategoryController::class, 'store']);
     Route::get('/category/{id}', [CategoryController::class, 'getView']);
-    Route::post('/category/{id}', [CategoryController::class, 'update']);
+    Route::patch('/category/{id}', [CategoryController::class, 'update']);
+    Route::delete('category/{id}', [CategoryController::class, 'destroy']);
 });

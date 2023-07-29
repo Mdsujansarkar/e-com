@@ -19,20 +19,18 @@ class CategoryController extends Controller
   public function store(CategoryRequest $request, CategoryServices $service)
   {
     $validate = $request->validated();
-    $data = $service->createCategory($validate);
-    if ($data) {
-      // return  _successMsgResps('Category Create Successfully', 200);
+    try {
+      $data = $service->createCategory($validate);
       $success = [
         'success' => true,
         'message' => 'Create successfully',
       ];
       return response()->json($success, 200);
-    }
-    if (!$data) {
-      // return  _successMsgResps('Category not Create Successfully', 400);
+    } catch (\Throwable $th) {
       $error = [
         'error' => false,
         'message' => 'Category Not Creat',
+        'error' => $th->getMessage()
       ];
       return response()->json($error, 500);
     }
@@ -40,30 +38,33 @@ class CategoryController extends Controller
   public function getView(CategoryServices $service, $id)
   {
     $data = $service->getCategoryView($id);
+    if (!$data) {
+      throw new \Exception("Record not found.");
+    }
     return response()->json($data, 200);
   }
-  public function update(CategoryRequest $request,CategoryServices $service, $id)
+  public function update(CategoryRequest $request, CategoryServices $service, int $id)
   {
- 
+
     $validate = $request->validated();
-    return $validate;
-    $data = $service->updateCategory($id,$validate);
-    dd($data);
-    if ($data) {
+    try {
+      $data = $service->updateCategory($id, $validate);
       // return  _successMsgResps('Category Create Successfully', 200);
       $success = [
         'success' => true,
         'message' => 'Create successfully',
       ];
       return response()->json($success, 200);
+    } catch (\Throwable $th) {
+      return response()->json(['error' => $th->getMessage()], 404);
     }
+  }
+  public function destroy(CategoryServices $service, int $id)
+  {
+    $data = $service->deleteCategory($id);
     if (!$data) {
-      // return  _successMsgResps('Category not Create Successfully', 400);
-      $error = [
-        'error' => false,
-        'message' => 'Category Not Creat',
-      ];
-      return response()->json($error, 500);
+      throw new \Exception("Record not found.");
     }
+    return response()->json($data, 200);
   }
 }
