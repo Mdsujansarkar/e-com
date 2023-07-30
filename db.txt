@@ -1,0 +1,13 @@
+Product Table
+=======================
+1. Product id->int
+2. Category id->int
+3. Product Name->string
+4. Product Price->double
+5. Product Quantity->int
+6. Product Discount->double
+8. Product Short Description->text
+9. Product Long Description->text
+10. Product Sub Category->string
+11. publicatin status ->bool
+12.
