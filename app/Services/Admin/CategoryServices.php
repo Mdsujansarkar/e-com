@@ -30,9 +30,6 @@ class CategoryServices
     public function deleteCategory($categoryId)
     {
         $deleteId = Category::findOrFail($categoryId);
-        if (!$deleteId) {
-            throw new \Exception("Record not found.");
-          }
         return $deleteId->delete();
 
     }

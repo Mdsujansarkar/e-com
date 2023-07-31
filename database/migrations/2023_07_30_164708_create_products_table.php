@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id');
             $table->string('product_name');
-            $table->double('product_price', 10,2);
+            $table->decimal('product_price', 10,2);
             $table->integer('product_quantity');
             $table->text('product_image');
             $table->text('short_description');
